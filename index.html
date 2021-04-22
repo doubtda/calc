@@ -3,10 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#317EFB"/>
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <meta name="description" content="Simple PWA Calculator Which runs on CPP Web Assembly">
+    <link rel="apple-touch-icon" href="logo.png" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </head>
 <body>
+    
+    <div class="wrapper">
+        <p class="title">PWA Calculator</p>
+        <div id="interrupt"><p class="title">Use Mobile or Press F12 to emulate Mobile</p> </div>
+        <div class="calculator">
+            <div class="displayText">
+                <input type="text" name="displayScreen" id="display">
+            </div>
+            <div class="mainPart">
+                <span class="boxItems" id="b7"><p class="boxItemsP">7</p></span>
+                <span class="boxItems" id="b8"><p class="boxItemsP">8</p></span>
+                <span class="boxItems" id="b9"><p class="boxItemsP">9</p></span>
+                <span class="boxItems" id="addButton"><p class="boxItemsP">+</p></span>
+                <span class="boxItems" id="b4"><p class="boxItemsP">4</p></span>
+                <span class="boxItems" id="b5"><p class="boxItemsP">5</p></span>
+                <span class="boxItems" id="b6"><p class="boxItemsP">6</p></span>
+                <span class="boxItems" id="subtractButton"><p class="boxItemsP">-</p></span>
+                <span class="boxItems" id="b1"><p class="boxItemsP">1</p></span>
+                <span class="boxItems" id="b2"><p class="boxItemsP">2</p></span>
+                <span class="boxItems" id="b3"><p class="boxItemsP">3</p></span>
+                <span class="boxItems" id="multiplyButton"><p class="boxItemsP">x</p></span>
+                <span class="boxItems" id="b0"><p class="boxItemsP">0</p></span>
+                <span class="boxItems" id="C"><p class="boxItemsP">C</p></span>
+                <span class="boxItems" id="equal"><p class="boxItemsP">=</p></span>
+                <span class="boxItems" id="divide"><p class="boxItemsP">/</p></span>
+            </div>
+        </div>
+    </div>
+    <script>
+        var displayText = document.getElementById('display');
+        $(document).on('click', 'span', function () {
+            actionChoose(String(this.id));
+        });
+        if('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('serviceworker.js')
+                    .then((reg) => console.log('Success: ', reg.scope))
+                    .catch((err) => console.log('Failure: ', err));
+            })
+        }
+    </script>
     
 </body>
 </html>
